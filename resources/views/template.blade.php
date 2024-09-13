@@ -367,7 +367,9 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                @yield('main')
+                <div class="container-fluid">
+                    @yield('main')
+                </div>
                 <!-- /.container-fluid -->
 
             </div>

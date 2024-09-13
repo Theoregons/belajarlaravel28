@@ -2,32 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
+use App\Models\Upload;
 use Illuminate\Http\Request;
 
-class SiswaController extends Controller
+class UploadController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $data = Siswa::all();
-        return view('tampil', compact('data'));
+        $data = Upload::all();
+        return view('upload.tampil', compact('data'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        return view('tambah');
+        //
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $validator = $request->validate([
-            'nis' => 'required|integer',
-            'nama' => 'required|string',
-            'alamat' => 'required|string',
+            'image' => 'required|max:10000|mimes:png,jpg',
         ]);
-        Siswa::create($validator);
-        return redirect('siswa');
+        $validator['image'] = $request->file('image')->store('img');
+        Upload::create($validator);
+        return redirect('upload');
     }
 
     /**
@@ -43,8 +50,7 @@ class SiswaController extends Controller
      */
     public function edit(string $id)
     {
-        $dataSiswa = Siswa::find($id);
-        return view('edit', compact('dataSiswa'));
+        //
     }
 
     /**
@@ -52,13 +58,7 @@ class SiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validator = $request->validate([
-            'nis' => 'required|integer',
-            'nama' => 'required|string',
-            'alamat' => 'required|string',
-        ]);
-        Siswa::find($id)->update($validator);
-        return redirect('siswa');
+        //
     }
 
     /**

@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Siswa extends Model
+class Upload extends Model
 {
-
-    protected $table = 'siswa';
-    protected $guarded = ['id'];
-    // protected $primaryKey = ['id_siswa'];
-
     use HasFactory;
+
+    protected $table = 'upload';
+    protected $guarded = ['id'];
 }
